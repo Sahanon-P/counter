@@ -229,11 +229,11 @@ function App() {
                 if (event.key === "Enter") {
                   setTimeout(() => {
                     setP1(p1 +1);
-                  }, 1000)
+                  }, 1500)
                 } else if (event.key === "Spacebar" || event.key === " ") {
                   setTimeout(() => {
                     setP2(p2 +1);
-                  }, 1000)
+                  }, 1500)
                 }
               }}
             >
