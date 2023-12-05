@@ -227,11 +227,13 @@ function App() {
               tabIndex={0}
               onKeyUp={(event) => {
                 if (event.key === "Enter") {
-                  event.preventDefault();
-                  setP1(p1 + 1);
+                  setTimeout(() => {
+                    setP1(p1 +1);
+                  }, 500)
                 } else if (event.key === "Spacebar" || event.key === " ") {
-                  event.preventDefault();
-                  setP2(p2 + 1);
+                  setTimeout(() => {
+                    setP2(p2 +1);
+                  }, 500)
                 }
               }}
             >
