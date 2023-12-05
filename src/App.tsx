@@ -35,7 +35,7 @@ const maximumKill = [
     value: 50,
   },
   {
-    label: "30 kills",
+    label: "70 kills",
     value: 70,
   },
 ];
@@ -47,7 +47,7 @@ function App() {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [complete, setComplete] = useState(true);
-  const [max, setMax] = useState(15);
+  const [max, setMax] = useState(50);
   const [toggle, setToggle] = useState(true);
   function handleStart() {
     setComplete(false);
@@ -187,7 +187,7 @@ function App() {
           </Stack>
         ) : (
           <Stack direction={'row'} spacing={10}>
-            <Button variant="contained" color={!toggle ? 'error' : 'primary'} tabIndex={0} onKeyDown={(event) => {
+            <Button variant="contained" color={!toggle ? 'error' : 'primary'} tabIndex={0} onKeyUp={(event) => {
               if (event.key === "Enter") {
                 event.preventDefault();
                 setP1(p1 + 1);
