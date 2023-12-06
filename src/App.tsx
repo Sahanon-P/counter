@@ -14,6 +14,10 @@ import Laser from "./assets/laser.mp3";
 import Message from "./Message";
 const time = [
   {
+    label: "10 min",
+    value: "10",
+  },
+  {
     label: "15 min",
     value: "15",
   },
@@ -238,12 +242,12 @@ function App() {
                   setTimeout(() => {
                     new Audio(Laser).play()
                     setP1(p1 +1);
-                  }, 1000)
+                  }, 500)
                 } else if (event.key === "Spacebar" || event.key === " ") {
                   setTimeout(() => {
                     setP2(p2 +1);
                     new Audio(Laser).play()
-                  }, 1000)
+                  }, 500)
                 }
               }}
             >
