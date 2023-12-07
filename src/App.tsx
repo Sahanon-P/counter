@@ -239,14 +239,14 @@ function App() {
               tabIndex={0}
               onKeyUp={(event) => {
                 if (event.key === "Enter") {
+                  new Audio(Laser).play()
                   setTimeout(() => {
-                    new Audio(Laser).play()
                     setP1(p1 +1);
                   }, 1000)
                 } else if (event.key === "Spacebar" || event.key === " ") {
+                  new Audio(Laser).play()
                   setTimeout(() => {
                     setP2(p2 +1);
-                    new Audio(Laser).play()
                   }, 1000)
                 }
               }}
