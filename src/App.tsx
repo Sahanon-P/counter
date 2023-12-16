@@ -240,9 +240,7 @@ function App() {
               onKeyUp={(event) => {
                 if (event.key === "Enter") {
                   new Audio(Laser).play()
-                  setTimeout(() => {
-                    setP1(p1 +1);
-                  }, 1000)
+                  setP1(p1 +1);
                 } else if (event.key === "Spacebar" || event.key === " ") {
                   new Audio(Laser).play()
                   setTimeout(() => {
