@@ -141,8 +141,8 @@ function App() {
           </Typography>
         ) : (
           <Typography variant="h4" sx={{ fontWeight: "bold", color: "white" }}>
-          Endless Mode
-        </Typography>
+            Endless Mode
+          </Typography>
         )}
         <Stack direction={"row"} spacing={10}>
           <Box
@@ -181,7 +181,12 @@ function App() {
           <Stack alignItems={"center"} spacing={2}>
             <FormControlLabel
               control={
-                <Switch checked={endless} size="medium" color="error" onChange={endlessMode} />
+                <Switch
+                  checked={endless}
+                  size="medium"
+                  color="error"
+                  onChange={endlessMode}
+                />
               }
               label={<Typography color={"white"}>Endless</Typography>}
               labelPlacement="end"
@@ -237,18 +242,20 @@ function App() {
               variant="contained"
               color={!toggle ? "error" : "primary"}
               tabIndex={0}
-              onKeyDown = {(event) => {
-                if (event.key === "Enter" || event.key === "Spacebar" || event.key === " "){
-                  new Audio(Laser).play()
+              onKeyDown={(event) => {
+                if (
+                  event.key === "Enter" ||
+                  event.key === "Spacebar" ||
+                  event.key === " "
+                ) {
+                  new Audio(Laser).play();
                 }
               }}
               onKeyUp={(event) => {
                 if (event.key === "Enter") {
-                  setP1(p1 +1);
+                  setP1(p1 + 1);
                 } else if (event.key === "Spacebar" || event.key === " ") {
-                  setTimeout(() => {
-                    setP2(p2 +1);
-                  }, 1000)
+                  setP2(p2 + 1);
                 }
               }}
             >
