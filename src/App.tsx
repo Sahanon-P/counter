@@ -12,7 +12,11 @@ import { useEffect, useState } from "react";
 import Logo from "./assets/logo.jpg";
 import Laser from "./assets/laser.mp3";
 import Message from "./Message";
-const time = [
+const killTime = [
+  {
+    label: "1 min",
+    value: "01",
+  },
   {
     label: "10 min",
     value: "10",
@@ -56,6 +60,7 @@ const maximumKill = [
 function App() {
   const [second, setSecond] = useState("00");
   const [minute, setMinute] = useState("45");
+  const [time, setTime] = useState("45");
   const [p1, setP1] = useState(0);
   const [p2, setP2] = useState(0);
   const [open, setOpen] = useState(false);
@@ -87,7 +92,7 @@ function App() {
         setOpen(true);
       }
       setSecond("00");
-      setMinute("45");
+      setMinute(time);
       setComplete(true);
       resetScore();
     }
@@ -113,7 +118,7 @@ function App() {
               }
               resetScore();
               setOpen(true);
-              setMinute("45");
+              setMinute(time);
               clearInterval(interval);
             } else {
               if (parseInt(minute) < 10) {
@@ -198,9 +203,10 @@ function App() {
                   defaultValue={"45"}
                   onChange={(event) => {
                     setMinute(event.target.value);
+                    setTime(event.target.value);
                   }}
                 >
-                  {time.map((row, index) => (
+                  {killTime.map((row, index) => (
                     <MenuItem key={index} value={row.value}>
                       {row.label}
                     </MenuItem>
