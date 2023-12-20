@@ -200,7 +200,7 @@ function App() {
               {!endless ? (
                 <TextField
                   select
-                  defaultValue={"45"}
+                  defaultValue={time}
                   onChange={(event) => {
                     setMinute(event.target.value);
                     setTime(event.target.value);
@@ -217,7 +217,7 @@ function App() {
               )}
               <TextField
                 select
-                defaultValue={50}
+                defaultValue={max}
                 onChange={(event) => {
                   setMax(parseInt(event.target.value));
                 }}
