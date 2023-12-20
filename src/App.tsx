@@ -242,16 +242,8 @@ function App() {
               variant="contained"
               color={!toggle ? "error" : "primary"}
               tabIndex={0}
-              onKeyDown={(event) => {
-                if (
-                  event.key === "Enter" ||
-                  event.key === "Spacebar" ||
-                  event.key === " "
-                ) {
-                  new Audio(Laser).play();
-                }
-              }}
               onKeyUp={(event) => {
+                new Audio(Laser).play();
                 if (event.key === "Enter") {
                   setP1(p1 + 1);
                 } else if (event.key === "Spacebar" || event.key === " ") {
