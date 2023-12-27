@@ -19,18 +19,20 @@ import {
   };
   export default function Message({
     message,
+    scoreMessage,
     open,
     handleClose,
   }: {
     message: string;
+    scoreMessage: string;
     open: boolean;
     handleClose: () => void;
   }) {
-    let check = false;
+    let isBlueWin = false;
     if (message.includes("blue")) {
-      check = true;
+      isBlueWin = true;
     } else if (message.includes("red")) {
-      check = false;
+      isBlueWin = false;
     }
     return (
       <Modal
@@ -44,27 +46,18 @@ import {
           },
         }}
       >
-        {check ? (
-          <Stack spacing={5} sx={style}>
-            <Typography color={"primary"} variant="h1">
-              {message.toUpperCase()}
-            </Typography>
-            <Button color={"primary"} onClick={handleClose}>
-              {" "}
-              close
-            </Button>
-          </Stack>
-        ) : (
-          <Stack spacing={5} sx={style}>
-            <Typography color={"error"} variant="h1">
-              {message.toUpperCase()}
-            </Typography>
-            <Button color={"error"} onClick={handleClose}>
-              {" "}
-              close
-            </Button>
-          </Stack>
-        )}
+        <Stack spacing={5} sx={style}>
+          <Typography color={isBlueWin ? "primary" : "error" } variant="h1">
+            {message.toUpperCase()}
+          </Typography>
+          <Typography color={isBlueWin ? "primary" : "error" } variant="h2">
+            {scoreMessage}
+          </Typography>
+          <Button color={isBlueWin ? "primary" : "error" } onClick={handleClose}>
+            {" "}
+            close
+          </Button>
+        </Stack>
       </Modal>
     );
   }
