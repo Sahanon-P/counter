@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import Logo from "./assets/logo.jpg";
 import Laser from "./assets/laser.mp3";
 import Message from "./Message";
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 const killTime = [
   {
     label: "1 min",
@@ -41,6 +43,10 @@ const killTime = [
 
 const maximumKill = [
   {
+    label: "5 kill",
+    value: 5,
+  },
+  {
     label: "30 kill",
     value: 30,
   },
@@ -56,17 +62,22 @@ const maximumKill = [
     label: "70 kills",
     value: 70,
   },
+  {
+    label: "80 kills",
+    value: 80,
+  },
 ];
 function App() {
   const [second, setSecond] = useState("00");
-  const [minute, setMinute] = useState("45");
-  const [time, setTime] = useState("45");
+  const [minute, setMinute] = useState("30");
+  const [time, setTime] = useState("30");
   const [p1, setP1] = useState(0);
   const [p2, setP2] = useState(0);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [scoreMessage, setScoreMessage] = useState("");
   const [complete, setComplete] = useState(true);
-  const [max, setMax] = useState(50);
+  const [max, setMax] = useState(40);
   const [toggle, setToggle] = useState(true);
   const [endless, setEndless] = useState(false);
   function handleStart() {
@@ -91,6 +102,7 @@ function App() {
         setMessage(toggle ? "red win" : "blue win");
         setOpen(true);
       }
+      setScoreMessage(`${p1} - ${p2}`);
       setSecond("00");
       setMinute(time);
       setComplete(true);
@@ -116,6 +128,7 @@ function App() {
               } else if (p2 > p1) {
                 setMessage(toggle ? "red win" : "blue win");
               }
+              setScoreMessage(`${p1} - ${p2}`);
               resetScore();
               setOpen(true);
               setMinute(time);
@@ -141,8 +154,8 @@ function App() {
       <Stack alignItems={"center"} spacing={3}>
         <img src={Logo} height={200} width={400} />
         {!endless ? (
-          <Typography variant="h4" sx={{ fontWeight: "bold", color: "white" }}>
-            00:{minute}:{second}
+          <Typography variant="h3" sx={{ fontWeight: "bold", color: "white" }}>
+            {minute}:{second}
           </Typography>
         ) : (
           <Typography variant="h4" sx={{ fontWeight: "bold", color: "white" }}>
@@ -150,14 +163,37 @@ function App() {
           </Typography>
         )}
         <Stack direction={"row"} spacing={10}>
-          <Box
-            width={400}
-            height={400}
-            bgcolor={!toggle ? "error.main" : "primary.main"}
-            textAlign={"center"}
-          >
-            <Typography fontSize={200}>{p1}</Typography>
-          </Box>
+          <Stack direction={"column"} spacing={3}>
+            <Box
+              width={400}
+              height={400}
+              bgcolor={!toggle ? "error.main" : "primary.main"}
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}
+            >
+              <Typography fontSize={200}>{p1}</Typography>
+            </Box>
+            <Stack direction={"row"} justifyContent={"center"} spacing={5}>
+              <Button 
+                variant="contained"
+                size="large"
+                onClick={() => setP1(p1 + 1)}
+                color="warning"
+              >
+                <AddIcon/>
+              </Button>
+              <Button 
+                variant="contained"
+                size="large"
+                onClick={() => setP1(p1 - 1)}
+                color="warning"
+              >
+                <RemoveIcon/>
+              </Button>
+            </Stack>
+          </Stack>
+          
           {complete ? (
             <Button
               variant="contained"
@@ -173,14 +209,36 @@ function App() {
               {max}
             </Typography>
           )}
-          <Box
-            width={400}
-            height={400}
-            bgcolor={toggle ? "error.main" : "primary.main"}
-            textAlign={"center"}
-          >
-            <Typography fontSize={200}>{p2}</Typography>
-          </Box>
+          <Stack direction={"column"} spacing={3}>
+            <Box
+              width={400}
+              height={400}
+              bgcolor={toggle ? "error.main" : "primary.main"}
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}
+            >
+              <Typography fontSize={200}>{p2}</Typography>
+            </Box>
+            <Stack direction={"row"} justifyContent={"center"} spacing={5}>
+              <Button 
+                variant="contained"
+                size="large"
+                onClick={() => setP2(p2 + 1)}
+                color="warning"
+              >
+                <AddIcon/>
+              </Button>
+              <Button 
+                variant="contained"
+                size="large"
+                onClick={() => setP2(p2 - 1)}
+                color="warning"
+              >
+                <RemoveIcon/>
+              </Button>
+            </Stack>
+          </Stack>
         </Stack>
         {complete ? (
           <Stack alignItems={"center"} spacing={2}>
@@ -234,7 +292,7 @@ function App() {
           <></>
         )}
         {complete ? (
-          <Stack direction={"row"} spacing={5}>
+          <Stack direction={"row"} spacing={3}>
             <Button variant="contained" color="primary" onClick={handleStart}>
               Start
             </Button>
@@ -280,6 +338,7 @@ function App() {
           setOpen(false);
         }}
         message={message}
+        scoreMessage={scoreMessage}
       />
     </Stack>
   );
